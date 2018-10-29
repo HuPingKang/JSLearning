@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第10章、处理文档(document对象)</title>
+    <style type="text/css">
+        .ll{
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        .img{
+            width: 70%;
+            height: 70%;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<!--bgcolor -- 设置body的背景颜色-->
+<body bgcolor="" id="xx">
+<p onblur="onblurs()" >10.1、document对象概述</p>
+<p>10.2、document对象的常用属性、方法和事件</p>
+<li class="ll">10.2.1、document对象的属性</li>
+<img src="./src/documentProps.png" class="img">
+<script>
+
+    var obj = document.getElementById("xx");
+    document.write("<p style='margin-left: 30px'>document方法：write----往HTML中写入网页内容</p>")
+    //bgColor ：设置document对象的背景颜色：
+    obj.bgColor = '#f5f5dc';
+
+//    document.createElement('<p class="ll">document.createElement创建一个HTML标记</p>')
+
+//    obj.close();
+
+
+    function onblurs() {
+        alert("失去焦点！");
+    }
+
+</script>
+<li class="ll">10.2.2、document对象的方法</li>
+<img src="./src/documentFuncs.png" class="img">
+<li class="ll">10.2.3、document对象的事件</li>
+<img src="./src/documentEvents.png" class="img">
+<img src="./src/documentEvents_1.png" class="img">
+
+<br>
+<a href="https://www.baidu.com" style="font-size: 20px">JavaScript论坛</a>
+<script language="JavaScript">
+    document.vlinkColor = "#f0f";  //超链接点击过后显示的颜色；
+    document.alinkColor = '#0af';  //当超链接获得焦点时显示的颜色；
+    document.linkColor = '#fad';   //未点击超链接时的颜色；
+</script>
+
+<div id="divv" style="width: 300px;height: 30px;background-color: powderblue"></div>
+<script language="JavaScript">
+    var obj = document.getElementById('divv');
+    obj.bgColor = '#aee';  //bgColor：背景色
+    obj.fgColor = '#f0f';   //fgColor：前景色
+</script>
+<p>10.3、document对象的应用</p>
+<li class="ll">10.3.1、超链接文字颜色设置：alinkColor、linkColor、vlinkColor</li>
+<li class="ll">10.3.2、文档的前景色和背景色：bgColor、fgColor</li>
+<li class="ll">10.3.3、查看文档创建日期(fileCreatedDate)、修改日期(fileModifiedDate)和文档大小(fileSize)</li>
+<li class="ll">10.3.4、动态标题栏:document.title = "";</li>
+<li class="ll">10.3.5、获取并设置URL:document.URL</li>
+<li class="ll">10.3.6、获取对象的当前状态:readyState、</li>
+<li class="ll">10.3.7、在文档中输出数据：write()、writeln()</li>
+<li class="ll">10.3.8、打开新窗口并输出内容：open()、close()</li>
+
+<input type="text" id="jump">
+<input name="input" onclick="loadUrl()" type="button" value="跳转">
+<script language="JavaScript">
+
+     function loadUrl() {
+          var jump = document.getElementById('jump').value;
+         //跳转到一个新的页面
+         document.open();
+         //在新的页面写入html；
+         document.write("<html><head><title>document.open一个新的窗口</title></head><body><a href=jump>跳转</a></body></html>")
+     }
+
+</script>
+<li class="ll">10.3.9、动态添加一个HTML标记</li>
+<form id="add" style="width: 200px;height: 40px;background-color: powderblue"></form>
+<script>
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'txt';
+    input.value = '动态添加的文本框';
+    input.style.width = 200;
+    input.style.height = 40;
+    input.style.color = '#fff';
+//    document.add.appendChild(input);
+</script>
+<li class="ll">10.3.10、获取文本框并修改其内容</li>
+
+</body>
+</html>

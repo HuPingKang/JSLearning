@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" id="html">
+<head>
+    <meta charset="UTF-8">
+    <title>第11章、文档对象模型（DOM对象）</title>
+    <link href="./index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<p>11.1、DOM对象概述</p>
+<li class="ll">
+    DOM是Document Object Model的缩写；<br>
+    Document:创建网页并将该网页添加到web中，DOM就会根据这个网页创建一个文档；如果没有document，DOM也就无从谈起！<br>
+    Object: 对象是一种独立的数据集合。<br>
+    Model:模型代表将文档对象表示稳树状模型。在这个树状模型中，网页中的各个元素与内容表现为一个个相互连接的节点！<br>
+    DOM是访问和操作Web页面的接口，使用该接口可以访问页面中的其他标准组件。<br>
+    DOM可以访问站点中的数据、脚本和表现层对象。
+</li>
+<!-- display: inline-block： 设置标签横向布局-->
+<div style="margin-left: 20px; margin-top: 10px">
+    <img id="img" style="width: 200px;height: 200px;display: inline-block;" src="./src/DOM_1.png">
+    <img name="xxImg" style="width: 200px;height: 200px;display: inline-block;" src="./src/DOM_2.png">
+</div>
+
+<li class="subll">
+    11.1.1、DOM分层：<br>
+    文档对象模型采用的分层结构为树形结构，以树节点的方式表示文档中的各种内容。<br>
+    DOM中的每一个对象都可以称为一个节点(node)。<br>
+    根节点：在最顶层的 html 节点，称为根节点。<br>
+    父节点：一个节点之上的节点称为该节点的父节点(html称为body的父节点)。<br>
+    子节点：一个节点之下的节点称为子节点(body称为html的子节点)。<br>
+    兄弟节点：多个节点在同一个层次，并拥有相同的父节点称为兄弟节点(body和head称为兄弟节点)。<br>
+    后代：一个节点的子节点的集合称为该节点的后代（body和head称为html的后代；）<br>
+    叶子节点：在树形结构的最底部的节点称为叶子节点。(标题内容、3号标题、加粗内容称为叶子节点)<br>
+    <br>
+    DOM中的所有节点可以分为一下三种类型：<br>
+    元素节点：body、p、a等一系列标记是这个文档的元素节点；元素节点组成了这个文档的语义逻辑结构！<br>
+    文本节点：包含在元素节点中的内容部分，如p标记的文本等<br>
+    属性节点：元素节点的属性，如a标记的href属性与title属性等；一般属性节点都是隐藏在浏览器背后，并且是不可见的；属性节点总是被包含在元素节点中；<br>
+</li>
+<br>
+<li class="subll">
+    11.1.2、DOM级别:W3C制定的DOM第一级和第二级；
+</li>
+<p>11.2、DOM对象节点属性</p>
+<li class="ll">
+    在DOM中通过使用节点属性可以查询出各节点的名称、类型、节点值、子节点和兄弟节点等；
+</li>
+<img src="./src/DOM_3.png" style="width: 600px;height: 200px;margin-left: 20px">
+<li class="subll">
+    11.2.1、访问指定节点：<br>
+    使用getElementById()方法来访问指定id的节点，并用nodeName属性、nodeType和nodeValue<br>
+    属性来分别获取出该节点的名称、节点类型和节点的值（除文本节点类型外，其他类型的节点的值都为null）；<br>
+</li>
+<p id="dom_test_p" class="pp" style="margin-left: 30px">我只是一个DOM测试的标签，不要意外！</p>
+<p id="dom_test_p1" class="pp" style="margin-left: 30px"></p>
+<h5 id="name" class="pp" style="margin-left: 30px;margin-top: -10px">设置标签的name属性，可以直接使用document.name(的值)获取节点对象,如document.write(document.xxImg.nodeName)</h5>
+<script language="JavaScript">
+    var pNode = document.getElementById("dom_test_p");
+    var pStr = '标签p的nodeName: '+pNode.nodeName+', nodeType: '+pNode.nodeType+', nodeValue: '+pNode.nodeValue;
+
+    var imgNode = document.getElementById("img");
+    var imgStr = "标签img的parentNode:"+imgNode.parentNode.nodeName+", previousSibling: "+imgNode.previousSibling.nodeName+", nextSibling: "+imgNode.nextSibling.nodeName;
+
+
+    var html = document.getElementById('html');
+    var htmlStr = '标签html的firstChild:'+html.firstChild.nodeName+',  lastChild: '+html.lastChild.nodeName;
+
+    document.getElementById("dom_test_p1").innerText = pStr+'\n'+ imgStr + '\n' + htmlStr;
+
+</script>
+<p>11.3、DOM节点</p>
+<li class="ll">11.3.1、创建节点</li>
+<li class="subll">
+    1、创建新节点<br>
+    创建新的节点先通过createElement()和createTextNode()方法，生成一个新的元素，并生成文本节点，再通过使用appendChild()方法将创建的新节点添加到当前节点的末尾处；
+</li>
+<script language="JavaScript">
+    var b = document.createElement('b');        // 创建新生成的节点元素
+    var txt = document.createTextNode('创建新节点！');    //创建节点文本
+    //将新节点b添加到页面上；
+    b.appendChild(txt);
+    document.body.appendChild(b);
+</script>
+<li class="subll">2、创建多个节点(使用循环语句)</li>
+<script language="JavaScript">
+
+    var aText = ["Hello，","JavaScript","、Html","、CSS"];
+    for (var i=0;i<aText.length;i++){
+        var ce = document.createElement('b');
+        var cText = document.createTextNode(aText[i]);
+        ce.appendChild(cText);
+        document.body.appendChild(ce);
+
+    }
+
+</script>
+<p style="font-size: 13px;color: purple;">
+   注意：document.appendChild(node)方法在每一次添加新的节点时都会刷新页面，会使<br>
+    浏览器显得十分缓慢。这里可以使用createDocumentFragment()方法来解决这个问题
+</p>
+<script language="JavaScript">
+
+    var aText = ["iOS","Android","Javascript","React Native","Html","CSS"];
+    var cdf = document.createDocumentFragment();
+    for (var k=0;k<aText.length;k++){
+        var ce = document.createElement('b');
+        var cb = document.createElement('br');
+        var cText = document.createTextNode(aText[k]);
+        ce.appendChild(cText);
+        cdf.appendChild(ce);
+        cdf.appendChild(cb);
+    }
+    document.body.appendChild(cdf);
+</script>
+
+<li class="ll">11.3.2、插入节点insertBefore(new,ref):将新的子节点添加到当前节点的末尾；</li>
+<div style="margin-top: 1px;margin-left: 10px;margin-bottom: 0px;font-size: 14px;height: 40px;background-color: #CCCCCC">
+    <b id="insert">在我前面插入一个节点！</b>
+</div>
+<script language="JavaScript">
+
+    var insertNode = document.getElementById('insert');
+    var newNode = document.createElement('b');
+    var newText = document.createTextNode('我是刚插入的一个新节点！');
+    var cb = document.createElement('br');
+    newNode.appendChild(newText);
+    if (insertNode.parentNode){  //判断是否有父节点
+        insertNode.parentNode.insertBefore(cb,insertNode);
+        insertNode.parentNode.insertBefore(newNode,cb);
+    }
+
+</script>
+<li class="ll">
+    11.3.3、复制节点cloneNode(Boolean:表示是否为深度复制)<br>
+    true：深度复制，将当前节点的所有子节点全部复制；<br>
+    false：简单复制，只复制当前节点，不复制其子节点；<br>
+</li>
+<b style="margin-left: 10px;font-size: 15px;color: red">下面演示一下：深度复制与简单复制</b>
+<script language="JavaScript">
+    var copyNode = document.getElementById('insert').parentNode;
+    var newNode = copyNode.cloneNode(true);
+    var simpleNode = copyNode.cloneNode(false);
+    document.body.appendChild(newNode);
+    document.body.appendChild(simpleNode);
+</script>
+<li class="ll">11.3.4、删除和替换节点</li>
+<li class="subll">1、删除节点removeChild(node):删除一个子节点；</li>
+<script language="JavaScript">
+    var insertNode = document.getElementById('insert');
+
+    if(insertNode.parentNode){
+        insertNode.parentNode.removeChild(insertNode);
+    }
+
+</script>
+<li class="subll">2、替换节点replaceChild(new,old):新节点替换旧节点</li>
+<b>替换节点</b>
+<br>
+<b id="replace">我是旧节点</b>
+<script language="JavaScript">
+    var newNode = document.createElement('b');
+    var newText = document.createTextNode('我是新节点');
+    var replaceNode = document.getElementById('replace');
+    newNode.appendChild(newText);
+    if (replaceNode.parentNode){
+        replaceNode.parentNode.replaceChild(newNode,replaceNode);
+    }
+</script>
+<p>11.4、获取文档中的指定元素</p>
+<li class="ll">11.4.1、通过元素的id属性获取元素（document.getElementById('id')）</li>
+<li class="ll">11.4.2、通过元素的name属性获取元素（document.getElementsByName('id')得到一个数组，根据下标获取元素）</li>
+<p>11.5、与DHTML相对应的DOM</p>
+<li class="ll">
+    innerHTML被多数浏览器所支持，innerText、outerHTML和outerText只有IE浏览器支持（错误）；<br>
+    innerHTML声明的是元素含有的HTML文本；不包括开始和结束标记，包含样式、文本内容以及其他属性等；<br>
+    innerText只能声明元素包含的文本内容；<br>
+    outerHTML:包含的是整个元素的所有内容，包含起始终止标记；<br>
+    outerText:与innerText相同；
+</li>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第四章、函数</title>
+    <!--函数的定义-->
+    <script>
+        function textFunction(text){
+            alert("我是一个放在head里面的JavaScript函数")
+        }
+        function maskingEnter() {
+            if (event.keyCode==8){
+                event.keyCode = 0;
+                event.returnValue = false;
+                alert("当前界面设置delete键不可用！");
+            }
+        }
+    </script>
+    <style>
+         #btn1,#btn2{
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        #longBtn{
+            width: 130px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        #p1{
+            font-size: 14px;
+            margin-left: 30px;
+            font-family: 'Andale Mono';
+        }
+        #input{
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body onkeydown="maskingEnter()" onmousedown="maskingEnter()">
+<p>4.1、函数的定义:函数的定义通常放在html的head中，写在script标签中</p>
+<p id="p1">
+    function functionName([parama1,parama2,...]){<br>
+        statements;<br>
+        return experssion;<br>
+    }
+</p>
+<p>4.2、函数的调用</p>
+<button id="btn1" onclick="textFunction()">调用了一个函数</button>
+<p>4.3、函数的嵌套</p>
+<script>
+    function qianTao() {
+        function subFunc() {
+            alert("我是一个嵌套函数");
+        }
+        subFunc();
+    }
+</script>
+<button id="btn2" onclick="qianTao()">嵌套了一个函数</button>
+<p>4.4、递归函数:函数在自身的函数体内调用自身</p>
+<p>4.5、JavaScript内置函数</p>
+<button id="longBtn" onclick="jsInnerFunction()">JavaScript内置函数</button>
+<script>
+    function jsInnerFunction(){
+
+        //isNaN的参数如果为NaN，则isNaN(NaN)的值为true，反正为false；
+        alert("1.使用内置函数parseInt(string)\n将首位为数字的字符串转化为数字："+parseInt("1.1xxxx20")+"\n"+
+              "2.使用内置函数parseFloat(string)\n将首位为数字的字符串转化为数字："+parseFloat("1.1xxxx20")+"\n"+
+              "3.使用内置函数isNaN(Num)\n检验某一个值是否为NaN："+isNaN(NaN)+"\n"+
+              "4.使用isFinite(Num)\n判断某一个表达式是否为无穷大:"+isFinite(10000)+"\n"+
+              "5.使用encodeURI(url)\n函数返回一个URI字符串编码后的结果："+'\n'+encodeURI("https://www.百度.com")+'\n'+
+              "6.使用decodeURI(url)\n函数返回一个URI字符串解码后的结果："+'\n'+decodeURI("https://www.%E7%99%BE%E5%BA%A6.com")
+
+        );
+    }
+</script>
+<p>4.6、function()构造函数与函数直接量</p>
+<input id="input">
+</body>
+</html>

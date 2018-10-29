@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>第一章、初识JavaScript</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+</head>
+
+<body>
+<!--a.使用<script></script>直接嵌入JavaScript代码；-->
+<script type="text/javascript">
+    document.write("我喜欢学习JavaScript!<br>");
+    document.write("你喜不喜欢？<br>");
+    document.write("我不喜欢，你开心就好！<br>");
+</script>
+<br>
+<!--b.外部引入JavaScript代码；-->
+<script src="./JS001.js"></script>
+<!--c.作为特定标签的属性值使用；-->
+<!--<script>标签可以放在web页面的<head></head>标记中，也可以放在<body></body>标签中-->
+<script type="text/javascript">
+    insertText("你在哪？<br>");
+    insertText("我在上海啊！<br>");
+    insertText("想去找你玩，可以吗？<br>");
+    insertText("你来吧！<br><br>");
+</script>
+<!--c.作为特定标签的属性值使用；-->
+<button style="width: 200px;height: 30px;border-radius: 5px" onclick="javascript:alert('作为特定标签的属性使用，来嵌入JS代码')">1.作为属性嵌入JS代码</button>
+<br>
+<button style="margin-top: 10px; width: 200px;height: 30px;border-radius: 5px" onclick="alert('你不能点击我')">2.作为属性嵌入JS代码</button>
+<br>
+<!--更新页面内容-->
+<button id="clickChange" style="margin-top: 10px; width: 200px;height: 30px;border-radius: 5px" onclick="clickChangeText()">点击改变文本</button>
+<script>
+
+    function clickChangeText() {
+        let index = Math.floor(Math.random()*100)%5;
+        let textArray = ["爱老虎油","黑虎你","撒拉黑有","衣西里拨弟兮","阿姨兮带路"]
+        document.getElementById("clickChange").innerText = textArray[index];
+    }
+
+</script>
+<script>
+
+    var now = new Date();
+    var hour = now.getHours();
+    var minu = now.getMinutes();
+    alert("您好，现在是"+hour+":"+minu+"\n欢迎访问我的网站！")
+
+</script>
+</body>
+
+</html>
+
+<!--1.JavaScript代码插入web里面的三种方式：-->
+   <!--a.使用<script></script>直接嵌入JavaScript代码；-->
+   <!--b.外部引入JavaScript代码；-->
+   <!--c.作为特定标签的属性值使用；-->
+
+<!--注释：-->
+    <!--<script>标签可以放在web页面的<head></head>标记中，也可以放在<body></body>标签中-->

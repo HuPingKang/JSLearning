@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第五章、对象与数组</title>
+    <style>
+        .ll{
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        .pp{
+            font-size: 13px;margin-left: 40px;color: purple;
+        }
+
+        #p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11,#p16,#p17{
+            font-size: 13px;margin-left: 30px;
+        }
+        .pp{
+            font-size: 13px;margin-left: 30px;
+            color:red;
+        }
+
+        .pArray,.pArrayRead{
+            font-size: 13px;margin-left: 30px;
+            color:red;
+        }
+
+        .stringImg{
+            width: 70%;
+            height: 70%;
+            margin-left: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+<p>5.1、JavaScript内部对象</p>
+<li class="ll">5.1.1、Object对象</li>
+<script type="text/javascript">
+    var obj = new Object('string');
+    const obj1 = 'string';
+    console.log(obj.toString());
+    function length() {
+        return 1000;
+    }
+    //重写父类方法；
+    Array.prototype.length = length();
+    var lenArray = new Array(["xxxxx"]);
+//    alert(lenArray.length);
+    console.log(obj == obj1);
+</script>
+<p class="pp">a.Object对象的创建：var obj = new Object('')</p>
+<p class="pp">b.Object对象的属性：prototype、constructor</p>
+<p class="pp">c.Object对象的方法：toLocaleString()、toString()、valueOf()</p>
+<p id="p4"></p>
+<p id="p5"></p>
+<p id="p6"></p>
+<p id="p7"></p>
+<p id="p8"></p>
+<p id="p9"></p>
+<p id="p10"></p>
+<p id="p11"></p>
+<script>
+        const localeDate = new Date();
+        document.getElementById("p4").innerText = "获取当前时间toLocaleString()："+localeDate.toLocaleString();
+
+        const num = [12306,95500];
+        document.getElementById("p5").innerText = "[12306,95500] toString()为字符串：" + num.toString();
+
+        const bool = new Boolean(1000);
+        document.getElementById("p6").innerText = "Boolean(1000) toString()为字符串："+bool.toString();
+
+        const date = new Date();
+        document.getElementById("p7").innerText = "Date().toString()为字符串： "+date.toString();
+
+        const error = new Error("我错了!");
+        document.getElementById("p8").innerText = "Error(\"我错了!\").toString()为字符串： "+error.toString();
+
+        function textFunc() {
+            return "我是一个函数！";
+        }
+        const func = new textFunc();
+        document.getElementById("p9").innerText = "Function.toString()为字符串： "+func.toString();
+
+        document.getElementById("p10").innerText = "Array.valueOf()值：： "+num.valueOf();
+        document.getElementById("p11").innerText = "Error.valueOf()值：： "+error.valueOf();
+
+//        const to = 1000;
+        //toString的参数代表：转化的进制数（2、8、16、32、64....）
+//        alert(to.toString(10));
+
+</script>
+
+<li class="ll">5.1.2、String对象</li>
+<p class="pp">a.String对象的三个属性：length、prototype、constructor</p>
+<p class="pp">length返回字符串的长度</p>
+<p class="pp">constructor用于对当前对象的函数的引用</p>
+<p id="p16"></p>
+<script>
+
+    function readFunctionCode(text,number) {
+        return text+number.toString()
+    }
+    var fred = new readFunctionCode("Year",2018);
+    //constructor显示函数对象中的函数代码：
+    document.getElementById("p16").innerText = fred.constructor;
+
+</script>
+<p class="pp">prototype属性可以为对象添加属性和方法</p>
+<p id="p17"></p>
+<script>
+
+    function personnel(name,age) {
+
+        this.name = name;
+        this.age = age;
+
+    }
+    var information = new personnel("张三",30);
+    personnel.prototype.salary = null;
+    information.salary = 30000;
+
+    var loc = new Number(1000);
+    Number.prototype.subNumber = null;
+    loc.subNumber = 20000;
+
+    var jayChou = new String("周杰伦");
+    String.prototype.anblume = null;
+    jayChou.anblume = "七里香";
+    var innerText =
+        "Number对象的原始值："+loc.toString()+"  添加属性值："+loc.subNumber.toString()+'\n'+
+        "String的原始值："+jayChou.toString()+"  添加属性值："+jayChou.anblume+"\n"+
+        "姓名："+information.name+"  年龄："+information.age.toString()+"  薪资："+information.salary.toString();
+    document.getElementById("p17").innerText = innerText.fontsize(30);
+
+</script>
+<p class="pp">b.String对象的方法</p>
+<img src="./src/stringFuncs.png" class="stringImg">
+
+<li class="ll">5.1.3、Date对象:<br>var newDate = new Date(2018,10,13,11,50,22)</li>
+<img src="./src/dateFuncs1.png" class="stringImg">
+<img src="./src/dateFuncs2.png" class="stringImg">
+
+<li class="ll">5.1.4、event对象</li>
+<p class="pp" onclick='example()'>事件处理函数与对象绑定：通过元素标记的一个属性，需要把event对象作为参数传递（onKeyUp='example(event)'）</p>
+<script>
+
+    function example() {
+        if(window.event.altKey || window.event.shiftKey || window.event.ctrlKey){
+            alert("2018年10月13号我在加班！");
+        }
+    }
+</script>
+<li class="ll">5.1.5、FileSystemObject对象</li>
+<p class="pp">1.动态创建FileSystemObject对象</p>
+<script>
+    //ActiveXObject控件是IE浏览器特有的，不支持谷歌和火狐等；
+    var fileObject = new ActiveXObject('Scropting.FileSystemObject');
+    fileObject.GetAbsolutePathName('c:');
+</script>
+
+<li class="ll">5.1.6、Drive对象</li>
+<li class="ll">5.1.7、File对象</li>
+<li class="ll">5.1.8、Folder对象</li>
+
+<p>5.2、对象访问语句</p>
+<li class="ll">5.2.1、for...in循环语句</li>
+<li class="ll">5.2.2、with语句</li>
+
+<p>5.3、JavaScript中的数组</p>
+<li class="ll">5.3.1、创建Array对象</li>
+<p class="pp">
+    1.var arrayObj = new Array();<br>
+    2.var arrayObj = new Array(3);              三个元素的数组<br>
+    3.var arrayObj = new Array(1,2,3,"a","b");  直接赋值的数组；
+</p>
+<p class="pArray"></p>
+<script>
+
+    var arrayObj = new Array(7);
+    var arrayObj1 = new Array(1,2);
+    //getElementsByClassName方法返回的是一个属性class = "pArray"的标签的数组；
+    var pArray = document.getElementsByClassName("pArray");
+    pArray[0].innerText = "数组初始化:"+arrayObj[0]+'   '+arrayObj1[0];
+
+</script>
+<p class="pArrayRead"></p>
+<script>
+    Array.prototype.outAll = function printAll() {
+        for(var i=0;i<this.length;i++){
+//            document.write(this[i]+'<br>');
+        }
+    }
+
+    var printArray = new  Array("1",'2','3','5');
+    printArray.outAll();
+    String.prototype.nslogAxll = function nslogAxll() {
+        for(var i=0;i<this.length;i++){
+//            document.write(this[i]);
+            document.getElementsByClassName("pArrayRead")[0].innerText += this[i];
+        }
+    }
+    var rxq = new String("数组遍历:我是一只小小小小鸟！");
+    rxq.nslogAxll();
+
+</script>
+<li class="ll">5.3.2、Array对象的输入与输出</li>
+<li class="ll">5.3.3、Array对象的属性:length、prototype</li>
+<li class="ll">5.3.4、Array对象的方法:</li>
+<img src="./src/arrayFunc.png" class="stringImg">
+<br>
+<script>
+    var array = new Array('1','2','3','长江','黄河');
+    //slice(start,end) start:从那个index开始，end从哪个index结束（不是长度）；
+    array =  array.slice(1,4);
+    console.log(array.toString(),array.toLocaleString());
+</script>
+<li class="ll">5.3.5、Array的添加和删除</li>
+<li class="ll">5.3.6、设置Array的排列顺序</li>
+<li class="ll">5.3.7、获取Array中的某段数组元素</li>
+<li class="ll">5.3.8、将Array转化成字符串</li>
+<input value="">
+
+</body>
+</html>

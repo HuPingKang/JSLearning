@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第三章、流程控制</title>
+    <style>
+        #btn{
+            margin-top: 10px;
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        #p1,#p2{
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<p id="p1">
+    本章主要讲解流程控制语句：
+    if语句、switch、while、do...while（先执行一次循环语句，再判断是否继续执行）、continue、break,
+    跟iOS一致；
+</p>
+<p id="p2">下面例子:JavaScript根据html的标签id或者name属性值，读取html数据</p>
+<form id="td1">
+    <input name="use" type="text">
+    <br>
+    <button id="btn" onclick="getValue()">获取文本</button>
+</form>
+
+<script>
+    function getValue() {
+        //通过name或者id属性获取html数据；
+        var value = td1.use.value;
+        // td1.use.focus(); //文本框获取焦点
+        // td1.submit(); //提交表单
+        alert(value);
+    }
+</script>
+</body>
+</html>

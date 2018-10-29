@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第二章、JavaScript基础</title>
+    <style>
+        #li1,#li2,#li3,#li4,#li5,#li6,#li7,#li8,#li9,#li10,#li11,#li12,#li13{
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        #p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11{
+            font-size: 13px;margin-left: 30px
+        }
+    </style>
+</head>
+<body>
+<p>2.1、数据类型</p>
+<li id="li1">2.1.1、数字型</li>
+<p id="p1">
+    JavaScript中所有的数字类型都是Number类型，不区分整形与浮点型;
+    <br>所有的数字类型都是用浮点型表示的!<br>
+    特殊类型的数字常量NaN,即"非数字"，程序发生错误时产生；
+
+</p>
+<li id="li2">2.1.2、字符串型</li>
+<p id="p2">"双引号中包含 \"双引号\""</p>
+<p style="font-size: 13px;margin-left: 30px">'单引号中包含 \'单引号\''</p>
+<li id="li3">2.1.3、布尔型：false、true</li>
+<li id="li4">2.1.4、特殊数据类型</li>
+<p id="p3">1、转义字符：以反斜杠开头的不可显示的特殊字符通常称为控制（转义）字符</p>
+<script>
+    //在document。writeln方法中使用转义字符时，只有将其放在格式化文本<pre>中，才会起作用
+    document.writeln("<pre>")
+    document.writeln("      document.writeln：转义字符！\n      Javascript")
+    document.writeln("</pre>")
+</script>
+<p id="p4">2、未定义值：undefined（声明了未赋值）</p>
+<p id="p5">3、空值（null）：声明了被赋予一个空值</p>
+<p>2.2、常量和变量</p>
+<li id="li5">2.2.1、常量</li>
+<p id="p6">
+    通常使用const声明常量；
+</p>
+<li id="li6">2.2.2、变量</li>
+<p id="p7">
+    变量的命名：<br>
+    a.必须以下划线或者字母开始，中间可以是数字、字母或下划线；<br>
+    b.变量名不能包含空格、加减等符号；<br>
+    c.不能使用JavaScript中的关键字；<br>
+    d.变量名严格区分大小写；<br><br>
+
+    变量的声明：<br>
+    a.JavaScript中变量的声明全部使用的var，声明时也可以赋值，未赋值的其值默认为undefined；<br>
+    b.可以使用一个关键字var声明多个变量：var a=1，b=2，c=3；<br>
+    c.不能使用JavaScript中的关键字；<br>
+    d.变量名严格区分大小写；<br><br>
+
+    变量的生存期：<br>
+    a.全局变量的生存期是从定义开始，到本程序结束为止（与const常量相同）；<br>
+    b.局部变量：当函数运行结束为止；<br>
+
+</p>
+<script>
+    {
+        alert("{}在JavaScript中用来包装成语句块！");
+    }
+</script>
+<p>2.3、运算符</p>
+<li id="li7">2.3.1、算术运算符：+、-、*、/、%、++、--（与iOS一样）</li>
+<li id="li8">2.3.2、比较运算符：<、>、<=、>=、==、===、!=、!==</li>
+<p id="p8">
+    ==:等于，只根据表面值进行判断，不涉及数据类型；"17"==17（true）;<br>
+    ===:绝对相等，根据表面值和数据类型同时进行判断；"17"===17（false）;<br>
+    !=:不等于，只根据表面值进行判断，不涉及数据类型；"17"!=17（false）;<br>
+    !==:绝对不相等，根据表面值和数据类型同时进行判断；"17"!==17（true）;<br>
+</p>
+<li id="li9">2.3.3、赋值运算符:=、+=、-=、*=、/=、%=、&=、|=、^=</li>
+<p id="p9">
+    &=:逻辑与运算(a&=b;相当于a=a&b;)<br>
+    |=:逻辑或运算(a|=b;相当于a=a|b;)<br>
+    ^=:逻辑异或运算(a^=b;相当于a=a^b;)<br>
+</p>
+<li id="li10">2.3.4、字符串运算符: +、+=</li>
+<p id="p10">
+    +:连接两个字符串；<br>
+    +=:连接两个字符串，并将结果赋给左边的字符串；<br>
+
+</p>
+<li id="li11">2.3.5、逻辑运算符：&&(与)、||(或)、!(非)</li>
+<li id="li12">2.3.6、条件运算符（三目运算符）:true?a:b;</li>
+<li id="li13">
+    2.3.7、其他运算符：位操作运算符（&、^、～、<<、>>、>>>）、
+    typeof运算符（返回变量的类型：typeof a）、new运算符（创建一个对象）；
+</li>
+<p id="p11">
+    new语法：new constructor[(arguments)];<br>
+    constructor: 必选项（对象的构造函数），没有参数的话，省略（）；var Object1 = new Object;<br>
+    arguments:可选项，构造函数的参数；var date1 = new Date('August 8 2018');
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+
+</html>
+

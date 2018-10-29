@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第九章、事件处理</title>
+    <link href="./index.css" rel="stylesheet" type="text/css">
+    <style>
+        #div{
+              margin:0 auto;
+              width:487px;
+              height:400px;
+              border:1px solid #F00;
+              background-color: palegreen;
+              margin-top: 50px;
+              border-radius: 20px;
+              border-color: #FF4500;
+        }
+        #input{
+            margin: 0 auto;
+            width: 200px;
+            height: 30px;
+            background-color: lightgray;
+            margin-top: 30px;
+
+        }
+
+    </style>
+</head>
+<body style="background-color: white" onload="loadHtml()" onunload="unloadHtml()">
+
+<p class="pClass">9.1、事件与事件处理概述</p>
+<button id="xxBtn">点我</button>
+<br>
+<button id="divBtn" onmouseover="overMe()" onmouseout="moveOut()">Div按钮</button>
+<script language="JavaScript">
+
+    var btn = document.getElementById("xxBtn");
+    btn.onclick = function clickMe() {
+        alert("点了一下我！你妹的xxx");
+    }
+
+    function loadHtml() {
+        alert("加载页面！");
+    }
+    function unloadHtml() {
+        alert("是否关闭当前页面？")
+    }
+
+    function overMe() {
+
+        var div = document.getElementById('divBtn');
+        div.style.backgroundColor = '#1E90FF';
+        div.style.borderColor = '#1E90FF';
+        div.style.opacity = 1;
+
+    }
+
+    function moveOut() {
+
+         var div = document.getElementById('divBtn');
+         div.style.backgroundColor = '#FF4500';
+         div.style.borderColor = '#FF4500';
+         div.style.opacity = 0.3;
+    }
+
+</script>
+
+<p class="pClass">
+    9.2、DOM事件模型<br>
+    9.2.1、事件流；<br>
+    9.2.2、主流浏览器的事件模型;<br>
+    9.2.3、事件对象;<br>
+    9.2.4、注册与移除事件监听器;<br>
+</p>
+<p class="pClass">
+    9.3、鼠标键盘事件；<br>
+    9.3.1、鼠标单击onclick()事件；
+
+</p>
+
+<div>
+    <div style="background-color: yellow;width: 100px;height: 100px;display: inline-block"></div>
+    <div style="background-color: red;width: 100px;height: 100px;display: inline-block"></div>
+</div>
+
+<select name="mean" style="width: 100px;height: 35px;text-align: center;
+font-size: 18px;background-color: purple;color: white;border-radius: 6px">
+
+    <option value="black">黑</option>
+    <option value="yellow">白</option>
+    <option value="blue">蓝</option>
+    <option value="green">绿</option>
+    <option value="red">红</option>
+    <option value="purple">紫</option>
+
+
+</select>
+<div id="div">
+    <input id="input" type="text" onseeked="return selected()" value="Please Enter Message!">
+    <br>
+    <a href="https://www.baidu.com" onclick="selected()">百度</a>
+</div>
+<script>
+    function selected() {
+        alert("I am be Selected!");
+    }
+</script>
+
+</body>
+</html>

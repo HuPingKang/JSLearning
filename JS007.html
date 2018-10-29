@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第七章、正则表达式</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    var reg_expression =  /^ming/;  ///\bming\b/;
+    //正则对象的函数；
+    var result = reg_expression.test("ming ri soft");
+
+    var regExpObj = new RegExp("创建");
+    var testString = "如何创建正则表达式";
+    var res = regExpObj.test(testString);
+    alert(result.toString() + '\n' +res.toString());
+
+</script>
+</body>
+</html>
