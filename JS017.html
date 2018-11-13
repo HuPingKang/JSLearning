@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第17章、图像处理</title>
+    <link href="./index.css" rel="stylesheet">
+    <style type="text/css">
+
+        #test{
+            width: 200px;
+            border: 1px solid #000;
+            background: #FFFFFF;
+            color: #000;
+            margin-top: -10px;
+        }
+        #progress{
+            display: block;
+            width: 0px;
+            background: #ccc;
+        }
+        /*将当前页面的所有图片变灰*/
+        img,td {
+            /*-webkit-filter: grayscale(1); !* Webkit *!*/
+            /*filter: gray; !* IE6-9 *!*/
+            /*设置灰度*/
+            /*filter: grayscale(1); !* W3C *!*/
+            /*!*设置亮度*!*/
+            /*filter: brightness(70%);*/
+            /*!*对比度*!*/
+            /*filter: contrast(90%);*/
+            /*!*饱和度*!*/
+            /*filter: saturate(0%)*/
+            /*!*褐色Sepia：Sepia滤镜用于控制图片的褐色色调，也就是常见的将图片调为老照片效果。设置0%为原始图像，设置100%为老照片效果。*!*/
+            /*filter: sepia(50%);*/
+            /*!*色相旋转Hue-rotate*!*/
+            /*filter: hue-rotate(90deg);*/
+            /*!*反色Invert*!*/
+            /*filter: invert(20%);*/
+            /*!*模糊Blur：取值越大，模糊效果越明显。这个滤镜可以接受任何长度值，除了百分比*!*/
+            /*filter: blur(1px);*/
+            /*!*透明度Opacity：取值100%的时候完全不透明*!*/
+            /*filter: opacity(75%);*/
+            /*阴影Drop Shadow*/
+            filter: drop-shadow(2px 2px 5px #666) grayscale(0.6) opacity(100%) blur(0px) invert(0%) hue-rotate(90deg) sepia(50%) saturate(100%) contrast(100%) brightness(100%);
+            /*animation: haunted 1s ; !*infinite*!*/
+        }
+        /*@keyframes haunted {*/
+                /*0% {*/
+                        /*filter: brightness(0%);*/
+                    /*}*/
+                /*20% {*/
+                        /*filter: brightness(20%);*/
+                    /*}*/
+                /*40% {*/
+                        /*filter: brightness(40%);*/
+                    /*}*/
+                /*60% {*/
+                        /*filter: brightness(60%);*/
+                    /*}*/
+                /*80% {*/
+                        /*filter: brightness(80%);*/
+                    /*}*/
+                /*95% {*/
+                        /*filter: drop-shadow(2px 2px 5px #666) grayscale(0.6) opacity(100%) blur(0px) invert(0%) hue-rotate(90deg) sepia(50%) saturate(100%) contrast(100%) brightness(100%);*/
+
+                    /*}*/
+            /*}*/
+    </style>
+</head>
+<body>
+<p>
+    17.1、Image对象<br>
+    document.images 是一个数组，包含了所有页面中的图像对象；可以使用索引来获取图像对象；
+    也可以使用name（<img name="xx">）来获取图像对象 document.images['xx'];
+    isComplete判断图像是否加载完成：
+
+</p>
+<img src="./src/Image_1.png" class="img" style="margin-left: 5px">
+<script language="JavaScript">
+
+//    document.images 是一个数组，包含了所有页面中的图像对象；可以使用索引来获取图像对象；
+//    也可以使用name（<img name="xx">）来获取图像对象 document.images['xx'];
+
+//isComplete判断图像是否加载完成：
+//    document.images[0].isComplete();
+
+</script>
+<p style="margin-bottom: 3px">17.2、图像对象的应用</p>
+<p style="margin-left: 10px;margin-top: 3px;font-size: 15px;color: green">
+    17.2.1、图像的预装载<br>
+    1.为什么要预装载图像？<br>
+    对于浏览器装载图像来说，只有载图像发送一个HTTP请求后，才会被浏览器装载；服务器获取图像是一个耗时操作，会严重影响网页打开的速度，进而影响访问量；<br>
+    2.如何预装载图像？<br>
+    A、通过本地缓存的方式存储图像，这种方式在图片第一次被调用时依然存在上述问题；
+    <p style="color: purple;font-size: 15px;margin-top: -15px;margin-left: 10px">
+        B、在HTTP请求图像之前将其下载到缓存的一种方式，需要显示图像时，取缓存图片，立即显示；(图像的预装载)
+    </p>
+</p>
+
+<p style="margin-left: 10px;font-size: 15px">
+    使用Image类进行图像的预装载:<br>
+    将图像的URL传递给Image对象的src后，浏览器会进行装载请求，并将预装载的图片保存到本地缓存中，如果有图像请求时，将调用本地缓存内的图像，从而将图像立即显示，而不是重新装载。
+</p>
+<img id="preImg" style="margin-left: 10px;min-height: 200px">
+<script language="JavaScript">
+
+    setInterval('setImgs()',1000);
+    var preImg = new Image();
+    var imgs = [
+        "https://publish-pic-cpu.baidu.com/7f02b401-9d53-49d4-8b17-5d6229770953.jpeg@q_90,w_228,h_152",
+        "https://publish-pic-cpu.baidu.com/6636ace1-79e8-43d7-8ba6-aa9105a646ca.jpeg@q_90,w_228,h_152",
+        "https://publish-pic-cpu.baidu.com/fdd35a1b-950a-4d4e-bd88-93ddd7fc604a.jpeg@q_90,w_228,h_152",
+        "https://f10.baidu.com/it/u=3018224385,1298149852&fm=76",
+    ];
+    var index = 0;
+    function setImgs() {
+
+        if (index>imgs.length-1){
+            index = 0;
+        }
+        preImg.src = imgs[index];
+        document.getElementById('preImg').src = preImg.src;
+        ++index;
+    }
+
+</script>
+<p>17.2.3、图片的循环滚动</p>
+<div id="div1" style="overflow: hidden;width: 100%;color: #FFFFFF;">
+    <table cellspacing="0" cellpadding="0" align="left" border="0" cellspace="0">
+        <tr>
+            <td id="td1" valign="top">
+                <table width="1148" height="152" border="0" cellpadding="0" cellspacing="2">
+                    <tr>
+                        <td width="228" background="https://publish-pic-cpu.baidu.com/41520f51-9478-4cdf-9b69-80add0e23353.jpeg@q_90,w_228,h_152"></td>
+                        <td width="228" background="https://publish-pic-cpu.baidu.com/0e003959-605d-450a-9c64-63dc1308e17e.jpeg@q_90,w_228,h_152"></td>
+                        <td width="228" background="https://publish-pic-cpu.baidu.com/4bcd1d8c-5344-42c7-b6d0-a3c4cb695255.jpeg@q_90,w_228,h_152"></td>
+                        <td width="228" background="https://publish-pic-cpu.baidu.com/6f7f4e56-1829-4164-90db-0bf24a4a17af.jpeg@q_90,w_228,h_152"></td>
+                        <td width="228" background="https://publish-pic-cpu.baidu.com/91ce1259-773a-469f-b01f-0c74b20358cc.jpeg@q_90,h_152|c_1,w_228"></td>
+                    </tr>
+                </table>
+            </td>
+            <td id="td2" valign="top"></td>
+        </tr>
+    </table>
+</div>
+<script language="JavaScript">
+    var n = 5;
+    var td1 = document.getElementById('td1');
+    var td2 = document.getElementById('td2');
+    var div1 = document.getElementById('div1');
+    td2.innerHTML = td1.innerHTML;
+    var mycheck;
+    function move() {
+        if (td2.offsetWidth-div1.scrollLeft<=0){
+            div1.scrollLeft -= td1.offsetWidth;
+        }else{
+            div1.scrollLeft++;
+        }
+        mycheck = setTimeout(move,n);
+    }
+    div1.onmouseover = function () {
+        clearTimeout(mycheck)
+    }
+    div1.onmouseout = function () {
+        mycheck = setTimeout(move,n)
+    }
+    move();
+</script>
+
+<!--创建图片验证码画布-->
+<canvas width="100" height="40" id="imgCode" style="margin-top: 5px;background-color: #CCCCCC;border-radius: 5px"></canvas>
+<br>
+<input id="codeInput" type="button" value="获取图片验证码" style="margin-top: 0px;border-radius: 5px;border-width: 2px;" onclick="drawCode()">
+
+<script language="JavaScript">
+    var source = ['0','1','2','3','4','5','6','7','8','9'];
+    drawCode();
+    // 绘制验证码
+    function drawCode (str) {
+        var canvas = document.getElementById("imgCode"); //获取HTML端画布
+        var context = canvas.getContext("2d"); //获取画布2D上下文
+        context.fillStyle = "cornflowerblue"; //画布填充色
+        context.fillRect(0, 0, canvas.width, canvas.height); //清空画布
+        context.fillStyle = "white"; //设置字体颜色
+        context.font = "25px Arial"; //设置字体
+        var rand = new Array();
+        var x = new Array();
+        var y = new Array();
+        for (var i = 0; i < 4; i++) {
+            rand.push(rand[i]);
+            rand[i] = source[Math.floor(Math.random() * source.length)]
+            x[i] = i * 20 + 10;
+            y[i] = Math.random() * 20 + 20;
+            context.fillText(rand[i], x[i], y[i]);
+        }
+        str = rand.join('').toUpperCase();
+        //画3条随机线
+        for (var i = 0; i < 3; i++) {
+            drawline(canvas, context);
+        }
+//         画30个随机点
+        for (var i = 0; i < 30; i++) {
+            drawDot(canvas, context);
+        }
+        convertCanvasToImage(canvas);
+        return str;
+    }
+    // 随机线
+    function drawline (canvas, context) {
+        context.moveTo(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)); //随机线的起点x坐标是画布x坐标0位置，y坐标是画布高度的随机数
+        context.lineTo(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)); //随机线的终点x坐标是画布宽度，y坐标是画布高度的随机数
+        context.lineWidth = 0.5; //随机线宽
+        context.strokeStyle = 'rgba(50,50,50,0.3)'; //随机线描边属性
+        context.stroke(); //描边，即起点描到终点
+    }
+    // 随机点(所谓画点其实就是画1px像素的线，方法不再赘述)
+    function drawDot (canvas, context) {
+        var px = Math.floor(Math.random() * canvas.width);
+        var py = Math.floor(Math.random() * canvas.height);
+        context.moveTo(px, py);
+        context.lineTo(px + 1, py + 1);
+        context.lineWidth = 0.2;
+        context.stroke();
+}
+    // 绘制图片
+    function convertCanvasToImage (canvas) {
+
+        var imgData = canvas.toDataURL("image/png");
+        var image = document.getElementById("imgCode");
+        image.src = imgData;
+        return image;
+
+    }
+
+</script>
+<p>17.2.5、浮动广告</p>
+<p>17.2.6、图片渐变效果</p>
+<img src="https://publish-pic-cpu.baidu.com/05d1f24d-e9f6-45df-ad05-8b4dc5d08703.jpeg@q_90,w_228,h_152"
+     id="colorImg" border="1"
+     style="filter: alpha(opacity=0);margin-top: -10px">
+<script language="JavaScript">
+
+    var b=0;
+//    定时器对象
+    var myLatent ;
+    function latent() {
+
+        b++;
+        console.log(b);
+        if (b==100){
+            //停止一个定时器
+            clearTimeout(myLatent);
+        }
+        document.getElementById('colorImg').style.opacity = b/100;
+
+    }
+//开启一个定时器
+    myLatent =  setInterval('latent()',100);
+
+</script>
+
+<p>17.2.7、进度条的显示</p>
+<p id="test">
+    <span id="progress">0%</span>
+</p>
+<script language="JavaScript">
+    var timer ;
+    function progressTest(n) {
+        var prog = document.getElementById('progress');
+        prog.firstChild.nodeValue = n+'%';
+        prog.style.width = (n*2)+'px';
+        n+=1;
+        if (n>100){
+            n=100;
+            clearTimeout(timer);
+        }
+        timer = setTimeout('progressTest('+n+')',100);
+    }
+    progressTest(0);
+</script>
+<p>17.2.8、不断闪烁的图片</p>
+<img id="blinImg" src="https://publish-pic-cpu.baidu.com/94c945ef-0187-4732-959a-f0292e24713a.jpeg@q_90,h_152|c_1,w_228">
+<script language="JavaScript">
+    var blinImg = document.getElementById('blinImg');
+    function blinImgs() {
+        blinImg.style.visibility = blinImg.style.visibility=='hidden'?"visible":"hidden";
+    }
+    setInterval("blinImgs()",100);
+</script>
+<p>17.2.9、CSS Filter制作图片特效(翻转、阴影、模糊、透明、波纹、灰掉等)</p>
+<img src="https://publish-pic-cpu.baidu.com/34d05c4f-31f8-43e1-a1e7-bcaeb2e13d55.jpeg@q_90,w_228,h_152" style="filter:gray">
+<br>
+<a href="https://www.w3cways.com/2046.html">img CSS的特效处理方法</a>
+<br>
+<img style="max-width: 700px" src="./src/image_2.png">
+<br>
+<img style="max-width: 700px" src="./src/image_3.png">
+<br>
+<img src="https://publish-pic-cpu.baidu.com/159d6a2f-36fc-4bd7-b8f9-4781f10c77e6.jpeg@q_90,w_228,h_152" style="filter:wave(add=true,freq=10px,lightStrenght=10,phase=10,strength=20px)">
+
+<p>17.2.10、图片总置于顶端</p>
+<div style="min-height: 400px"></div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第13章、CSS级联样式表</title>
+    <link type="text/css" rel="stylesheet" href="./index.css">
+    <style type="text/css">
+        /*标记选择器:适用于p标签*/
+        p{
+            font-size: 30px;
+            color: blue;
+            font-weight: 900;
+        }
+        /*id选择器*/
+        #baidu{
+            font-size: 20px;
+            margin-left: 20px;
+            font-weight: 900;
+            color: purple;
+            border-style: groove;
+            width: 40px;
+        }
+        /*类别选择器*/
+        .xxP{
+            margin-left: 10px;
+            font-size: 15px;
+            color: purple;
+            font-weight: 900;
+        }
+        /*通用选择器：设置当前界面所有标签*/
+        *{
+            line-height: 30px;
+            font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+        }
+
+    </style>
+</head>
+<body>
+<p>Hello,CSS</p>
+<p style="font-weight: 900;font-size: 20px;color: purple">1.CSS常用样式属性：</p>
+<img src="./src/css_01.png" class="img">
+<br>
+<img src="./src/css_02.png" class="img">
+<br>
+<img src="./src/css_03.png" class="img">
+<br>
+<p id="baidu" onmouseover="over()" onmouseout="move()">变色</p>
+<script language="JavaScript">
+    function over() {
+        document.getElementById('baidu').innerText = '百度';
+    }
+    function move() {
+        document.getElementById('baidu').innerText = '变色';
+    }
+</script>
+<p class="xxP">padding-top:用于设置对象与其最近一个定位的父对象顶部相关的位置;</p>
+<p style="font-size: 20px">CSS样式的继承：子标记会继承父标记的样式；(事实证明并不一定正确)</p>
+<div style="font-size: 20px;color: blueviolet">
+    <p style="font-size: 20px">我并没有继承了父标签div的样式</p>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

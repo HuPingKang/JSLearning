@@ -251,6 +251,22 @@ first-child{
     /*width: auto;*/
     /*height: auto;*/
     margin-left: 20px;
-    max-width: 70%;
+    width: auto;
+    max-width: 700px;
+    filter: drop-shadow(2px 2px 5px #666) grayscale(0.6) opacity(100%) blur(0px) invert(0%) hue-rotate(90deg) sepia(50%) saturate(100%) contrast(100%) brightness(100%);
 
+}
+
+ /*通用选择器：设置当前界面所有标签*/
+*{
+    line-height: 30px;
+    font-size: 20px;
+    color: purple;
+    font-weight: 900;
+    font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+}
+p{
+    color: green;
+    font-size: 18px;
+    margin-top: 5px;
 }

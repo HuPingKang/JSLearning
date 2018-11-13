@@ -44,50 +44,102 @@
 <img src="./src/window_03.png" style="max-width: 70%">
 <li class="ll">12.4.2、改变窗口大小:resizeBy(x,y)</li>
 <li class="ll">12.4.3、窗口滚动:scroll(x,y)、scrollTo(x,y)、scrollBy(x,y)</li>
-<li class="ll">12.4.4、访问窗口历史:window.history</li>
-<script language="JavaScript">
-
-</script>
-<li class="ll">12.4.5、控制窗口状态栏</li>
-<li class="ll">12.4.6、窗口时间与超时设定</li>
-<p>12.5、窗口事件</p>
-<li class="ll">12.5.1、通用窗口事件</li>
-<li class="ll">12.5.2、扩展窗口事件</li>
-<p>12.6、IE浏览器窗口扩展</p>
-<li class="ll">12.6.1、模式窗口</li>
-<li class="ll">12.6.2、无模式窗口</li>
-<li class="ll">12.6.3、弹出窗口</li>
-
 <script language="JavaScript">
 //    window.alert('我是一个window.alert弹窗！');
 //    window.confirm('确定要关闭浏览器吗？');
 //    window.prompt('我是一个window提示对话框！',"填入的内容")
-    var bd = window.open('https://www.baidu.com','百度','height=300,width=300,top=300,left=300');  //window对象打开一个新的网页；
-    var sina = window.open('https://www.sina.com','新浪','scrollbars,resizable');  //window对象打开一个新的网页；
-
-    //移动窗口；
-    bd.moveTo(1000,1000);
-    //调整页面窗口大小；
-    sina.resizeTo(300,300);
-    bd.resizeTo(300,300);
+//    var bd = window.open('https://www.baidu.com','百度','height=300,width=300,top=300,left=300');  //window对象打开一个新的网页；
+//    var sina = window.open('https://www.sina.com','新浪','scrollbars,resizable');  //window对象打开一个新的网页；
+//
+//    //移动窗口；
+//    bd.moveTo(1000,1000);
+//    //调整页面窗口大小；
+//    sina.resizeTo(300,300);
+//    bd.resizeTo(300,300);
 //window的定时器方法：
-    window.setTimeout(function () {
-//        window.prompt('我是一个window.prompt弹窗！');
-//        bd.close();
-//        sina.close();
-    },3000);
+//    window.setTimeout(function () {
+////        window.prompt('我是一个window.prompt弹窗！');
+////        bd.close();
+////        sina.close();
+//    },3000);
 
 //     window.setInterval(function () {
 //         console.log('window对象的定时器任务执行中....')
 //    },3000);
 
     //将window对象窗口尺寸扩大500，800；
-    bd.resizeBy(500,800);
-    bd.scrollTo(200,0);
-
-     this.document.write("每一个html中都可以使用this关键子代替window对象；")
-     parent.document.write('window的父对象是谁？');
+//    bd.resizeBy(500,800);
+//    bd.scrollTo(200,0);
+//
+//     this.document.write("每一个html中都可以使用this关键子代替window对象；")
+//     parent.document.write('window的父对象是谁？');
 //     alert('宽度：'+this.screen.width+ "\n高度："+ this.screen.height);// this.screen.width;
+
+</script>
+<li class="ll">12.4.4、访问窗口历史:window.history</li>
+<script language="JavaScript">
+
+//    var url = window.history.current;
+//    var length = window.history.length;
+//    var next = window.history.next;
+//    var previous = window.history.previous;
+//
+//    window.history.back();
+//    window.history.forward();
+//    window.history.go('https://www.baidu.com');
+
+</script>
+<li class="ll">12.4.5、控制窗口状态栏</li>
+<li class="subll">
+    1、window.status方法：改变状态栏中的文字，设置或给出浏览器窗口中状态栏的当前显示信息;
+</li>
+<li class="subll">
+    2、window.defaultstatus方法：与status方法的区别在于信息显示时间的长短；<br>
+    defaultstatus方法的值会在任何时间显示，而status方法的值只在某一个事件发生的瞬间显示;
+</li>
+<script language="JavaScript">
+
+    window.status = "上海复深蓝软件科技有限公司";
+    window.defaultStatus = "欢迎来到上海复深蓝软件科技有限公司";
+
+</script>
+<li class="ll">12.4.6、窗口时间与超时设定</li>
+<!--//    window.setTimeout(function () {-->
+<!--////        window.prompt('我是一个window.prompt弹窗！');-->
+<!--////        bd.close();-->
+<!--////        sina.close();-->
+<!--//    },3000);-->
+
+<!--//     window.setInterval(function () {-->
+<!--//         console.log('window对象的定时器任务执行中....')-->
+<!--//    },3000);-->
+<li class="subll">
+    setTimeout()用于设置一个超时，以便在将来的某一个时间执行某一段代码；<br>
+    setInterval()用于设置一个定时器任务，隔多少时间执行一段代码；<br>
+    clearTimeout(timer)可以在超时事件未执行前中止该超时设置；
+</li>
+<p>12.5、窗口事件</p>
+<li class="ll">12.5.1、通用窗口事件</li>
+<img src="./src/window_04.png" class="img">
+<li class="ll">12.5.2、扩展窗口事件</li>
+<img src="./src/window_05.png" class="img">
+<p>12.6、IE浏览器窗口扩展</p>
+<li class="ll">12.6.1、模式窗口：showModalDialog()</li>
+<script language="JavaScript">
+    var obj = new Object();
+    obj.name = "51js";
+    window.showModalDialog("https://www.baidu.com",obj,'dialogWidth:150px;dialogHeight:300px');
+</script>
+<li class="ll">12.6.2、无模式窗口:showModelessDialog</li>
+<li class="ll">12.6.3、弹出窗口：showModalDialog(url,...)</li>
+<script language="JavaScript">
+    var tips = window.prompt('你是音乐爱好者吗？');
+    tips.onclick = function ()  {
+        window.prompt('欢迎你来听音乐！');
+    }
+    tips.cancel = function () {
+        window.prompt('再见，欢迎下次光临！');
+    }
 
 </script>
 

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第14章、表单与表单元素</title>
+    <style type="text/css">
+        /*通用选择器：设置当前界面所有标签*/
+        *{
+            line-height: 25px;
+            font-size: 20px;
+            color: blue;
+            font-weight: 900;
+            font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+        }
+        form{
+            color: green;
+            margin:  10px;
+            padding: 10px;
+            /*margin-top: 10px;*/
+            font-size: 14px;
+            background-color: lightgray;
+        }
+        input{
+            margin-left:  20px;
+            margin-top: 5px;
+            height: 30px;
+            font-size: 14px;
+            color: green;
+            border-radius: 5px;
+            border-width: 1px;
+        }
+        textarea{
+            min-width: 200px;
+            min-height: 30px;
+            border-radius: 5px;
+            border-width: 2px;
+            border-color: purple;
+            margin-left: 20px;
+            font-size: 12px;
+            color: black;
+        }
+        select,option{
+            font-size: 15px;
+            color: purple;
+            margin-left: 20px;
+        }
+        p{
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<p>14.2、表单标记form</p>
+<p style="font-size: 15px;padding-left: 20px;padding-right: 20px;color: purple;">
+    1.一般情况下，表单的处理程序action和提交方式method是必不可少的参数；<br>
+    2.action:真正处理表单的数据脚本或程序在action属性里，这个值可以是程序或者脚本的一个完整的URL(表单提交的地址)。<br>
+    3.name:表单的名称（防止表单信息在提交到后台处理程序时出现混乱）；<br>
+    4.method:定义处理程序从表单中获取信息的方式，可取值为get或者post；，决定表单中的数据用什么方式提交到服务器；<br>
+    5.enctype:设置表单信息提交的编码方式；Text/plain(纯文本) | application/x-www-form-urlencoded(默认的编码形式) | multipart/form-data(MIME编码，上传文件的表单必须选择这个)；<br>
+    6.target:用来指定目标窗口的打开方式；（表单的目标窗口往往显示表单的返回信息，如是否成功提交了表单的内容、是否出错等）；_blank(显示在新打开的浏览器窗口) | _parent(显示在父级浏览器窗口) | _self(显示在当前浏览器窗口) | _top(显示在顶级浏览器窗口);
+</p>
+<p>14.3、输入标记input</p>
+<div style="background-color: purple;width: 340px;border-width: 2px;border-radius: 10px;margin-left: 10px">
+<form name="form"
+      action="https://www.baidu.com"
+      method="post"
+      enctype="application/x-www-form-urlencoded"
+      target="_self"
+      onsubmit="submit()"
+>
+    <h3 align="center" style="font-size: 15px;margin-bottom: 0px;color: green">湖北汽车工业学院教务系统2.0</h3><br>
+    <!--文本框-->
+    用户名：<input name="account" type="text" maxlength="10" style="margin-top: 0px">
+    <br>
+     密码： <input name="password" type="password" maxlength="8">
+    <br>
+    <!--单选框-->
+    性别： <input name="boy" type="radio" value="男" checked>男
+    <input name="girl" type="radio" value="女">女
+    <br>
+    <!--复选框-->
+    爱好：<input name="swim" type="checkbox" value="游泳">游泳
+    <input name="miusic" type="checkbox" value="音乐">音乐
+    <input name="movie" type="checkbox" value="电影">电影
+    <br>
+    <!--提交按钮-->
+    <input type="submit" value="登录" onclick="javascript:alert('输入错误，请重新输入')">
+    <!--重置按钮-->
+    <input type="reset" value="重置" onclick="javascript:alert('是否重置？')">
+    <!--图片域-->
+    <input type="image" src="./src/firefox_Avatar.jpg">
+    <!--hidden类型的input不显示在界面上-->
+    <input type="hidden" name="user_id" value="10001">
+    <!--文件域-->
+    <input type="file" name="file">
+</form>
+</div>
+<script language="JavaScript">
+    function submit() {
+        alert('submit');
+//        document.form.submit(); //提交表单
+    }
+</script>
+<p>14.4、文本域标记textarea</p>
+<p style="margin: 0px;margin-left: 10px;margin-top: 0px;font-size: 15px;color: purple">留言：</p>
+<textarea name="textname" rows="2" cols="3" placeholder="好久不见了，看到留言和我联系哦！"></textarea>
+<p>14.5、菜单和列表标记select与option</p>
+<select name="select">
+    <option>语文</option>
+    <option>数学</option>
+    <option>英语</option>
+</select>
+<p style="margin-bottom: 5px">14.7、在JavaScript中访问form</p>
+<p style="font-size: 15px;color: purple;margin-left: 20px">
+    document.form.miusic.value;
+
+</p>
+<script language="JavaScript">
+//    alert(document.form.miusic.value);
+</script>
+</body>
+<div style="min-height: 300px"></div>
+</html>

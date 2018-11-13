@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第16章、使用Cookie</title>
+    <link href="./index.css" rel="stylesheet">
+</head>
+<body>
+<p>
+    1.Cookie是浏览器提供的一种机制，它将document对象的cookie属性提供给JavaScript，可以由JavaScript对其进行控制;<br>
+    2.Cookie是与web站点而不是与某一个页面相关联的，无论用户访问该站点的任何一个页面，浏览器和web服务器都交换Cookie信息；<br>
+    3.用户访问其他站点时，每个站点都可能向用户发送一个Cookie，而浏览器会将这些Cookie分别保存；<br>
+    4.Cookie包括永久和临时两种方式；临时的Cookie只对当前的浏览器会话可用，永久的Cookie将在客户计算机上自动生成一个文本文件，所以在当前浏览器之外也可以使用；<br>
+</p>
+<p style="color: purple">5.Cookie的安全问题：Cookie在网络上记载着用户id、密码之类的信息，如果Cookie使用明码在网络上传递，将会出现安全隐患，所以cookie在网络上传递通常会使用MD5方式进行加密；</p>
+<script language="JavaScript">
+    document.cookie = encodeURI('username='+'shangHaiExportForturn');
+    document.cookie = encodeURI('password='+'WorldInternetForturn');
+
+    var cookieString = decodeURI(document.cookie);
+    alert(cookieString);
+
+</script>
+
+</body>
+</html>

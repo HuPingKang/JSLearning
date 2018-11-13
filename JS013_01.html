@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>烟花效果</title>
+</head>
+<body>
+<script language="JavaScript">
+var col = new Array('#ffffff','#fff000','#ff00ff','#00ff00','#ff0000');
+var p = '<div id="realDiv" style="position:absolute";top:0px;left:0px'>';
+var n = 0;
+for (var i=0;i<14;i++){
+    n++;
+    if (n=(col.length-1)){
+        n = 0;
+    }
+    p = p + '<div style="position:relative;width:1px;height:1px;background:'+col[n]+';font-size:3px">.</div>';
+
+}
+
+p = p +'</div>';
+document.write(p);
+
+var clrl = new Array('ff0000','00ff00','000aff','ff00ff','ffa500','fff000','00ff00','ffffff','fffff0');
+var sClrs = new Array('ffa500','55ff66','AC9DFC','fffff0');
+var peepY,peepX,step = 5,tallyStep = 0,backColor = 'ffa000',Mtop = 250,Mleft = 250;
+function dissilient() {
+    peepY = this.body.clientHeight/3;
+    peepX = this.body.clientWidth/8;
+    enlarge();
+    tallyStep+=step;
+    reduce();
+    T = setTimeout('dissilient()',20);
+}
+
+function enlarge() {
+    for (var i=0;i<realDiv.all.length;i++){
+        var c = Math.round(Math.random()*(clrl.length-1));
+        if (tallyStep<90){
+            realDiv.all[i].style.background = backColor;
+        }
+    }
+}
+
+
+</script>
+
+</body>
+</html>

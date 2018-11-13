@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第18章、浏览器检测</title>
+    <link href="./index.css" rel="stylesheet">
+    <style type="text/css">
+        p{
+            margin-top: 0px;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<p>
+    18.1、浏览器对象：Navigator:<br>
+    Navigator对象也称为浏览器对象，该对象包含了浏览器的整体信息，如浏览器名称、版本号等。
+</p>
+<p>18.1.1、Navigator对象的属性</p>
+<img src="./src/Navigator_1.png" class="img">
+<br>
+<script language="JavaScript">
+
+    var name = navigator.appName;
+    var version = navigator.version;
+    var userAgent = navigator.userAgent;
+    document.write("浏览器名称："+name+'<br>'+ "浏览器版本："+ version+'<br>'+"浏览器商家信息："+userAgent);
+
+</script>
+<p>18.1.2、浏览器对象的子对象:mimeTypes、plugin</p>
+<p style="font-size: 17px;margin-left: 10px">
+    1.MimeType对象:<br>
+    是NetScape浏览器支持的MIME类型（数据格式）；可以是浏览器支持的也可以是外部程序或者插件所支持的。<br>
+    navigator.mimeTypes返回的是一个数组；
+</p>
+<img src="./src/MiMe_pros.png" class="img">
+<p style="font-size: 17px;margin-left: 10px">
+    2.Plugin对象:<br>
+    用来描述浏览器安装的插件；navigator.plugins返回的是一个数组，数组的每一个元素代表浏览器的一个插件对象；<br>
+    每一个插件Plugin对象包含的是当前插件的信息；
+</p>
+<img src="./src/Plugin_pros.png" class="img">
+<p>18.2、检查浏览器是否支持某些特性</p>
+<p style="font-size: 17px;margin-left: 10px;">检测某些函数或者属性是否在当前浏览器中是否存在，最简单的方法就是使用typeof操作符。通过向该操作符传递
+    JavaScript值、对象、类、方法或者属性，就可以确定该操作符的类型。<br>
+    var xmlExists = typeof XMLHttpRequest;
+</p>
+
+<p>18.3、检测Quirks模式和标准模式：CSS渲染的方式</p>
+<p>
+    1、document.compatMode获取浏览器使用的是标准还是Quirks模式；<br>
+    2、使用的是哪种方式会在页面的DOCTYPE声明中体现出来，对于没有DOCTYPE的html文档，将会自动使用Quirks模式处理；
+</p>
+<div style="min-height: 300px"></div>
+
+</body>
+</html>
